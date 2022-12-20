@@ -44,19 +44,36 @@ class IncomePage extends React.Component {
 
     return (
       <div>
-        <p>{this.props.index + 1}  {convertToSentenceCase(this.props.income.description)}  {numeral(this.props.income.amount).format('$0,0[.]00')}</p>
-        <button onClick={this.open}>Expand</button>
+        <div className="record-item">
+          <p className="record-item-part">{this.props.index + 1} </p> 
+          <p className="record-item-part">{convertToSentenceCase(this.props.income.description)}</p> 
+          <p className="record-item-part">{numeral(this.props.income.amount).format('$0,0[.]00')}</p>
+          <button onClick={this.open} className="button-clean record-item-part">Expand</button>
+          <button onClick={this.incomeDelete} className="button-clean record-item-part">Delete</button>
+        </div>
         <Modal
+          className="modal-style"
           isOpen={this.state.display}
         >
-          <p>Description:{convertToSentenceCase(this.props.income.description)}</p>
-          <p>Amount:{numeral(this.props.income.amount).format('$0,0[.]00')}</p>
-          <p>Date:{time}</p>
-          <p>Note:{this.props.income.note}</p>
-          <Link to={`/editIncome/${this.props.income.id}`}><button>Edit</button></Link>
-          <button onClick={this.close}>Close</button>
+          <div>
+            <p>Description:</p> 
+            <p>{convertToSentenceCase(this.props.income.description)}</p>
+          </div>
+          <div>
+            <p>Amount:</p> 
+            <p>{numeral(this.props.income.amount).format('$0,0[.]00')}</p>
+          </div>
+          <div>
+            <p>Date:</p> 
+            <p>{time}</p>
+          </div>
+          <div>
+            <p>Note:</p> 
+            <p>{this.props.income.note}</p>
+          </div>
+          <Link to={`/editIncome/${this.props.income.id}`}><button className="button-small">Edit</button></Link>
+          <button onClick={this.close} className="button-small">Close</button>
         </Modal>
-        <button onClick={this.incomeDelete}>Delete</button>
       </div>
     )
   }

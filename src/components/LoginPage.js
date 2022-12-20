@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { provider, auth } from '../Firebase/firebase';
 import { set, ref } from 'firebase/database';
 import { database } from '../Firebase/firebase';
+import fullLogo from '../Images/fullLogo.png'
 // import leopard from '../Images/leopard.jpg'; //just showing how to display a picture.whereever the picture is needed just type "<img src={leopard} />.it would display"
 
 // const provider = new GoogleAuthProvider();
@@ -48,9 +49,9 @@ export default () => {
 
     return (
         <div>
-            <h1>Nakount</h1>
-            <p>Welcome to Nakount, where your money never disappears</p>
-            <button onClick={login}>Login</button>
+            <img className = "header-logo" id="login-logo" src={fullLogo} alt="logo" />
+            <p id="intro">Welcome to Nakant, where your money never disappears</p>
+            <button onClick={login} id="login-button">Login with Google</button>
         </div>   
     )
 }

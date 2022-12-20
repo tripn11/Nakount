@@ -52,23 +52,41 @@ class DashboardPage extends React.Component {
     render () {
         return (
             <div>
-                <h3>Welcome {this.props.auth.name},</h3>
-                <p>You currently have <span>{numeral(this.qualified().total).format('$0,0[.]00')}</span></p>
-                <p>Incomes amount:{numeral(this.qualified().totalIncomes).format('$0,0[.]00')}</p>
-                <p>Expenses amount:{numeral(this.qualified().totalExpenses).format('$0,0[.]00')} </p>
-                <DateRangePicker 
-                    startDate={moment(this.state.startDate)}
-                    endDate={moment(this.state.endDate)}
-                    onDatesChange={this.datesChanged}
-                    focusedInput={this.state.focused}
-                    onFocusChange={this.focusChanged}
-                    showClearDates={true}
-                    numberOfMonths={1}
-                    isOutsideRange={() => false}
-                    displayFormat='DD/MM/YYYY'
-                />
-                <p>From <span>{moment(this.state.startDate).format("Do MMMM, YYYY")}</span> to <span>{moment(this.state.endDate).format("Do MMMM, YYYY")}</span> you have <span>{numeral(this.qualified().total).format('0,0[.]00')}</span> Naira only</p>
-                <Logout />
+                <h3 id="dashboard-welcome">Welcome {this.props.auth.name},</h3>
+                <div className="page-content">
+                    <div id="dashboard-details_container">
+                        <div className="dashboard-detail">
+                            <span className="label" id="label-1">INCOME</span>
+                            <p>{numeral(this.qualified().totalIncomes).format('$0,0[.]00')} </p>
+                        </div>
+                        <div className="dashboard-detail">
+                            <span className="label" id="label-2">EXPENSE</span>
+                            <p>{numeral(this.qualified().totalExpenses).format('$0,0[.]00')} </p>
+                        </div>
+                        <div className="dashboard-detail" id="dashboard-detail-3">
+                            <span className="label" id="label-3">NET</span>
+                            <p>{numeral(this.qualified().total).format('$0,0[.]00')}</p>
+                        </div>
+                    </div>
+                    <div id="date-range">
+                        <DateRangePicker 
+                            startDate={moment(this.state.startDate)}
+                            endDate={moment(this.state.endDate)}
+                            onDatesChange={this.datesChanged}
+                            focusedInput={this.state.focused}
+                            onFocusChange={this.focusChanged}
+                            showClearDates={true}
+                            numberOfMonths={1}
+                            isOutsideRange={() => false}
+                            displayFormat='DD/MM/YYYY'
+                            id="date-range-picker"
+                        />
+                    </div>
+                    <p id="dashboard-summary">From <span>{moment(this.state.startDate).format("Do MMMM, YYYY")}</span> to <span>{moment(this.state.endDate).format("Do MMMM, YYYY")}</span> you have <span>{numeral(this.qualified().total).format('0,0[.]00')}</span> Naira only</p>
+                    <div id="logout">
+                        <Logout />
+                    </div>
+                </div>
             </div>
         )
     }

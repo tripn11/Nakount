@@ -1,0 +1,69 @@
+.records-title {
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+.records-header {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    align-content: space-around;
+    margin: 3rem 1rem 3rem 0;
+}
+
+.records-search {
+    margin-left: 2rem;
+    height: 2rem;
+}
+
+.button-block {
+    border-radius: 0;
+    font-size: 1.2rem;
+    padding:0.6rem 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.records-subheading {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.records-sort label {
+    margin-right: 1rem;
+}
+
+.button-clean {
+    color:$light-grey;
+    background-image: linear-gradient(to right, $darker-purple, $dark-purple);
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    margin:0.4rem 2rem;
+}
+
+.button-clean:hover {
+    background-image: linear-gradient($purple, $dark-purple);
+}
+
+
+.record-item {
+    display:grid;
+    grid-template-columns: 5rem 20rem 20rem 10rem 10rem;
+    margin:0 15rem 0 10rem;
+    padding: 1rem 0;
+    border-bottom: 0.01rem solid gray;
+}
+
+.records-list>div:first-child>div{
+    border-top: 1px solid gray;
+}
+
+.sortIncomesBy {
+    color: white;
+    background-color: $darker-purple;
+    border-color:$darker-purple;
+    padding: 0.5rem 0.5rem;
+}
+
+.sortIncomesBy:focus{
+    border: none;
+}

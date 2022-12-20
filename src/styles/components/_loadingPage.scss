@@ -1,0 +1,24 @@
+#loading-page {
+    background-color :black;
+    height:100vh
+}
+
+
+@keyframes shrinker {
+    0% {width: 20rem; height: 10rem;}
+    50%{width: 10rem; height: 5rem;}
+    100%{width: 20rem; height: 10rem;}
+}
+
+#loading-logo {
+    width: 20rem;
+    height: 10rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation-name: shrinker;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+

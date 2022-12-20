@@ -57,7 +57,8 @@ module.exports = (env,argv) => {
       new HtmlWebpackPlugin({
         title:"Boiler Plate",
         filename:"index.html",
-        template:"src/template.html"
+        template:"src/template.html",
+        favicon:"src/Images/logo.png" //don't add the ./
       }),
       new MiniCssExtractPlugin(),
       new webpack.DefinePlugin({

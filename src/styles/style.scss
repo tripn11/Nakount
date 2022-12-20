@@ -1,3 +1,10 @@
-#app {
-    color: red;
-}
+@import './base/variables';
+@import './base/base';
+@import './components/loadingPage';
+@import './components/header';
+@import './components/loginPage';
+@import './components/dashboardPage';
+@import './components/incomesPage';
+@import './components/modal';
+@import './components/form';
+@import './components/helpPage';

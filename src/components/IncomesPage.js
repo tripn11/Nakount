@@ -36,30 +36,39 @@ const IncomesPage = (props) => {
 
     return (
     <div>
-        <h2>Incomes</h2>
-        <input 
-            placeholder="Search Incomes"
-            value={props.state.filters.searchedWord}
-            onChange={searchChange}/>
-        <Link to="/addIncome"><button >Add Income</button></Link>
-        <label htmlFor="sortIncomesBy">Sort Incomes by:</label>
-        <select 
-            id="sortIncomesBy" 
-            name="sortIncomesBy"
-            value={props.state.filters.sortBy}
-            onChange={sortChange}>
-            <option value='oldToNew'>Date(Oldest to Newest)</option>
-            <option value='newToOld'>Date(Newest to Oldest)</option>
-            <option value='ascending'> Amount(Ascending Order)</option>
-            <option value='descending'>Amount(Descending Order)</option>
-        </select>
-        <p>List of Incomes</p>
-        {visibleIncomes.length > 0 ?
-            visibleIncomes.map( (income, index) =>(
-                <IncomePage key={income.id} income={income} index = {index} />
-            )): <p>No income yet</p> 
-        }
-        
+        <h2 className="records-title">Incomes</h2>
+        <div className="records-header">
+            <input 
+                placeholder="Search Incomes"
+                value={props.state.filters.searchedWord}
+                onChange={searchChange}
+                className="records-search"
+            />
+            <Link to="/addIncome"><button className="button-block">Add Income</button></Link>
+            <div className="records-sort">
+                <label htmlFor="sortIncomesBy">Sort Incomes by:</label>
+                <select 
+                    className="sortIncomesBy" 
+                    name="sortIncomesBy"
+                    value={props.state.filters.sortBy}
+                    onChange={sortChange}>
+                    <option value='oldToNew'>Date(Oldest to Newest)</option>
+                    <option value='newToOld'>Date(Newest to Oldest)</option>
+                    <option value='ascending'> Amount(Ascending Order)</option>
+                    <option value='descending'>Amount(Descending Order)</option>
+                </select>
+            </div>
+        </div>
+        <div className="page-content">
+            <p className="records-subheading">List of Incomes</p>
+            <div className="records-list">
+                {visibleIncomes.length > 0 ?
+                    visibleIncomes.map( (income, index) =>(
+                        <IncomePage key={income.id} income={income} index = {index} />
+                    )): <p>No income yet</p> 
+                }
+            </div>
+        </div>
     </div>
 )}
 

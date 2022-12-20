@@ -36,30 +36,39 @@ const ExpensesPage = (props) => {
 
     return (
     <div>
-        <h2>Expenses</h2>
-        <input 
-            placeholder="Search Expenses"
-            value={props.state.filters.searchedWord}
-            onChange = { searchChange } 
-        />
-        <Link to="/addExpense"><button >Add Expense</button></Link>
-        <label htmlFor="sortExpensesBy">Sort Expenses by:</label>
-        <select 
-            id="sortIncomesBy" 
-            name="sortIncomesBy"
-            value={props.state.filters.sortBy}
-            onChange={sortChange}>
-            <option value='oldToNew'>Date(Oldest to Newest)</option>
-            <option value='newToOld'>Date(Newest to Oldest)</option>
-            <option value='ascending'> Amount(Ascending Order)</option>
-            <option value='descending'>Amount(Descending Order)</option>
-        </select>
-        <p>List of Expenses</p>
-        {visibleExpenses.length > 0 ?
-            visibleExpenses.map( (expense, index) =>(
-                <ExpensePage key={expense.id} expense = {expense} index = {index} />
-            )): <p>No expense yet</p> 
-        }       
+        <h2 className="records-title">Expenses</h2>
+        <div className="records-header">
+            <input 
+                placeholder="Search Expenses"
+                value={props.state.filters.searchedWord}
+                onChange = { searchChange } 
+                className="records-search"
+            />
+            <Link to="/addExpense"><button className="button-block">Add Expense</button></Link>
+            <div className="records-sort">
+                <label htmlFor="sortExpensesBy">Sort Expenses by:</label>
+                <select 
+                    className="sortIncomesBy" 
+                    name="sortExpensesBy"
+                    value={props.state.filters.sortBy}
+                    onChange={sortChange}>
+                    <option value='oldToNew'>Date(Oldest to Newest)</option>
+                    <option value='newToOld'>Date(Newest to Oldest)</option>
+                    <option value='ascending'> Amount(Ascending Order)</option>
+                    <option value='descending'>Amount(Descending Order)</option>
+                </select>
+            </div>
+        </div>
+        <div className="page-content">
+            <p className="records-subheading">List of Expenses</p>
+            <div className="records-list">
+                {visibleExpenses.length > 0 ?
+                    visibleExpenses.map( (expense, index) =>(
+                        <ExpensePage key={expense.id} expense = {expense} index = {index} />
+                    )): <p>No expense yet</p> 
+                }
+            </div>
+        </div>
     </div>
 )}
 

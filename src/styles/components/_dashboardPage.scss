@@ -1,0 +1,167 @@
+#dashboard-welcome {
+    color: white;
+    padding:0 0 0 10rem;
+    font-family:'Dancing Script', cursive;
+    font-size: 2rem;
+}
+
+.page-content {
+    padding-left: 5rem;
+}
+
+#dashboard-summary {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 1.3rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.label {
+    border: solid $pink;
+    border-radius: 50%;
+    border-style:double;
+    border-width: 0.5rem;
+    box-shadow: 0.1rem 0.1rem 0.9rem 0.1rem darken($pink,20);
+    font-weight: 700;
+    font-size: 1.5rem;
+    background-color: darken($pink, 30);
+}
+
+#label-1 {
+    padding: 3rem 1.4rem;
+}
+
+#label-2 {
+    padding: 3rem 1rem;
+}
+
+#label-3 {
+    padding: 3rem 2.9rem;
+}
+
+#dashboard-details_container {
+    display: grid;
+    grid-template-columns: 30rem 30rem;
+    // row-gap: 1rem;
+}
+
+#dashboard-detail-3 {
+    grid-column: 1/3;
+}
+
+.dashboard-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-detail > p {
+    font-size: 1.5rem;
+    color: white;
+}
+
+#date-range {
+    position: absolute;
+    top: 10rem;
+    right:3rem;
+}
+
+#logout {
+    position:absolute;
+    right:3rem;
+    bottom: 1rem;
+}
+
+#logout button {
+    padding: 0.5rem 3rem;
+    font-size: 1.3rem;
+}
+
+////////////for the date range selector/////////////
+.DateRangePickerInput {
+    background-color: darken($dark-purple, 5);
+    border: 0.3rem solid darken($dark-purple, 5);
+    box-shadow: 0 0.1rem 0.5rem  black;
+}
+
+.DateInput {
+    //margin
+    padding:0.1rem;
+    background-color: darken($dark-purple, 5);
+    //font-size
+    font-weight:100;
+    width:8rem;
+}
+
+.DateInput__display-text--has-input {
+    color: white;
+}
+
+.DateInput__display-text--focused {
+    background-color:purple;
+}
+
+.DateRangePickerInput__clear-dates:hover {
+    background-image: linear-gradient($dark-purple,$dark-purple);
+    border-radius: 1%;
+}
+
+.DateRangePickerInput__clear-dates:focus,
+.DateRangePickerInput__clear-dates--hover {
+    background: $dark-purple;
+    border-radius: 10%;
+}
+
+.DayPicker--horizontal {
+    color: black;
+    background-color: black;
+    box-shadow: 0 2px 6px black, 0 0 0 1px black;
+}
+
+.DayPickerNavigation__prev--default, //border of the front and back arrow of the calender
+.DayPickerNavigation__next--default {
+    border:1px solid black;
+    background-image: linear-gradient(black,black)
+}
+
+.DayPicker__week-header {
+    color: white;
+    background-color: black;
+}
+
+.CalendarMonthGrid {
+    color: black;
+    background-color: black;
+}
+
+.CalendarMonth__caption {
+    color: white;
+}
+
+.DayPickerKeyboardShortcuts__show--bottom-right {
+    border-right: 33px solid black;
+}
+
+.CalendarDay--selected-span {
+    background: grey;
+    border: 1px double grey;
+    color: white;
+}
+
+.CalendarDay--selected-start, .CalendarDay--selected-end, .CalendarDay--selected {
+    background: grey;
+    border: 1px double grey;
+    color: #fff;
+}
+
+.DayPickerKeyboardShortcuts__show--bottom-right:hover {
+    border-right: 33px solid grey;
+}
+
+.CalendarDay {
+    border:none;
+}
+
+.CalendarDay__button:hover {
+    transition:none
+}

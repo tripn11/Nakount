@@ -40,19 +40,37 @@ class ExpensePage extends React.Component {
 
     return (
       <div>
-        <p>{this.props.index + 1}  {convertToSentenceCase(this.props.expense.description)}  {numeral(this.props.expense.amount).format('$0,0[.]00')}</p>
-        <button onClick={this.open}>Expand</button>
+        <div className="record-item">
+          <p className="record-item-part">{this.props.index + 1} </p>  
+          <p className="record-item-part">{convertToSentenceCase(this.props.expense.description)} </p> 
+          <p className="record-item-part">{numeral(this.props.expense.amount).format('$0,0[.]00')}</p>
+          <button onClick={this.open} className="button-clean record-item-part">Expand</button>
+          <button onClick={this.expenseDelete} className="button-clean record-item-part">Delete</button>
+        </div>
+        
         <Modal
+          className="modal-style"
           isOpen={this.state.display}
         >
-          <p>Description:{convertToSentenceCase(this.props.expense.description)}</p>
-          <p>Amount:{numeral(this.props.expense.amount).format('$0,0[.]00')}</p>
-          <p>Date:{time}</p>
-          <p>Note:{this.props.expense.note}</p>
-          <Link to={`/editExpense/${this.props.expense.id}`}><button>Edit</button></Link>
-          <button onClick={this.close}>Close</button>
+        <div>
+          <p>Description:</p>
+          <p>{convertToSentenceCase(this.props.expense.description)}</p>
+        </div>
+        <div>
+          <p>Amount:</p>
+          <p>{numeral(this.props.expense.amount).format('$0,0[.]00')}</p>
+        </div>
+        <div>
+          <p>Date:</p>
+          <p>{time}</p>
+        </div>
+        <div>
+          <p>Note:</p>
+          <p>{this.props.expense.note}</p>  
+        </div>
+          <Link to={`/editExpense/${this.props.expense.id}`}><button className="button-small">Edit</button></Link>
+          <button onClick={this.close} className="button-small">Close</button>
         </Modal>
-        <button onClick={this.expenseDelete}>Delete</button>
       </div>
     )
   }

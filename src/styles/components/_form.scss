@@ -1,0 +1,47 @@
+#form-page > h2 {
+    display: block;
+    font-size: 3rem;
+    width: 10rem;
+    margin: 2rem auto 0 auto;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   width: 40rem;
+   margin: 2rem auto;
+   background-color: grey;
+   padding: 2rem;
+}
+
+form > *{
+    margin-bottom: 2rem;
+}
+
+.SingleDatePicker {
+    text-align: right;
+}
+
+.SingleDatePickerInput {
+    border: none;
+    background-color: grey;
+}
+
+form > textarea {
+    max-width: 36rem;
+    width: 20rem;
+    height: 10rem;
+}
+
+#form-button {
+    text-align: center;
+    margin: 4rem 0 0 0;
+}
+
+.button-average {
+    font-size: 1.2rem;
+    padding:0.8rem 1rem;
+    height: 3rem;
+    width: 8rem;
+    margin: 0.8rem 1rem 0 1rem
+}

@@ -1,0 +1,41 @@
+#header {
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 0;
+    background-color: darken($color: $dark-purple, $amount: 2);
+    padding-left: 10rem;
+}
+
+.header-logo {
+    width: 16rem;
+    height: 8rem;
+}
+
+#header-nav {
+    margin-left: 5rem;
+}
+
+.header-nav-item {
+    text-decoration: none;
+    color: white;
+    margin: 0 2rem;
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
+.header-nav-item:hover {
+    color: gray;
+    transition: color 0.5s;
+}
+
+.header-nav-item_active {
+    text-decoration: none;
+    color: $pink;
+    margin: 0 2rem;
+    font-size: 1.4rem;
+    font-weight: 100;
+    background-color: darken($color: $dark-purple, $amount: 3);
+    padding: 0.8rem;
+    transition: color 1s, background-color 1s;
+}
+

@@ -1,6 +1,8 @@
 import React from 'react';
-import loading from '../Images/Spinner.gif'
+import fullLogo from '../Images/fullLogo.png';
 
 export default () => (
-    <img src={loading} />
+    <div id='loading-page'>
+       <img id='loading-logo' src={fullLogo} />   
+    </div>
 )

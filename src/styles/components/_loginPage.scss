@@ -1,0 +1,18 @@
+#login-logo {
+    display: block;
+    margin: 1rem auto;
+}
+
+#intro {
+    font-family: 'La Belle Aurore', cursive;
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+#login-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+}
