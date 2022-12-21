@@ -53,6 +53,11 @@
     border-bottom: 0.01rem solid gray;
 }
 
+.record-item > p {
+    margin-right: 1rem;
+    overflow: hidden;
+}
+
 .records-list>div:first-child>div{
     border-top: 1px solid gray;
 }
@@ -66,4 +71,45 @@
 
 .sortIncomesBy:focus{
     border: none;
+}
+
+//***********************************************************//
+//                     Media Queries                         //
+//***********************************************************//
+@media screen and (max-width: 500px) {
+    .records-header {
+        grid-template-columns: auto auto;
+        text-align: center;
+        row-gap: 2rem;
+    }
+
+    .records-sort {
+        grid-column:2/3;
+        margin-right: 0.5rem;
+    }
+
+    .records-search {
+        height: 2.5rem;
+    }
+
+    .records-subheading {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .records-list {
+        width: 35rem;
+        margin: 0 auto;
+        padding:0
+    }
+
+    .record-item {
+        grid-template-columns: 2rem 10rem 10rem 5rem 5rem;
+        margin:0;
+    }
+
+    // .record-item > p {
+    //     margin-right: 1rem;
+    //     overflow: hidden;
+    // }
 }

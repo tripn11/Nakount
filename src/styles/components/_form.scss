@@ -45,3 +45,26 @@ form > textarea {
     width: 8rem;
     margin: 0.8rem 1rem 0 1rem
 }
+
+//***********************************************************//
+//                     Media Queries                         //
+//***********************************************************//
+@media screen and (max-width: 500px) {
+    form {
+        height: 70vh;
+    }
+
+    form > *{
+        margin-bottom: 5rem;
+    }
+
+    form > input {
+        height: 5rem;
+        font-size: 1.5rem;
+    }
+
+    #form-button {
+        text-align: center;
+        margin: 2rem 0 0 0;
+    }
+}

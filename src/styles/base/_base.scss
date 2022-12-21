@@ -25,4 +25,48 @@ button:hover {
     cursor: pointer;
 }
 
+//***********************************************************//
+//                     Media Queries                         //
+//***********************************************************//
+@media screen and (max-width: 1300px) {
+    html {
+        font-size: 10px;
+    }
+}
 
+@media screen and (max-width: 930px) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    html {
+        font-size: 7px;
+    }
+}
+@media screen and (max-width: 650px) {
+    html {
+        font-size: 6.5px;
+    }
+}
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 6px;
+    }
+}
+@media screen and (max-width: 550px) {
+    html {
+        font-size: 5.5px;
+    }
+}
+@media screen and (max-width: 500px) {
+    html {
+        font-size: 9px;
+    }
+
+    button {
+        font-size: 3rem;
+        padding: 2rem 8rem;
+    }
+}

@@ -1,9 +1,8 @@
 #header {
     display: flex;
     align-items: flex-end;
-    padding: 1rem 0;
+    padding: 1rem 0 1rem 10rem;
     background-color: darken($color: $dark-purple, $amount: 2);
-    padding-left: 10rem;
 }
 
 .header-logo {
@@ -39,3 +38,29 @@
     transition: color 1s, background-color 1s;
 }
 
+//***********************************************************//
+//                     Media Queries                         //
+//***********************************************************//
+@media screen and (max-width: 500px) {
+    #header {
+        max-width: 100vw;
+        padding: 1rem 0 1rem 2rem;
+    }
+    
+    .header-logo {
+        height: 5rem;
+        width:12rem;
+    }
+    
+    #header-nav {
+        margin-left: 0;
+    }
+    
+    .header-nav-item {
+        margin: 0 0.5rem;
+    }
+    
+    .header-nav-item_active {
+        margin: 0 0.5rem;
+    }
+}

@@ -19,3 +19,18 @@ li {
     display: flex;
     align-items: flex-end;
 }
+
+//***********************************************************//
+//                     Media Queries                         //
+//***********************************************************//
+@media screen and (max-width: 500px) {
+    #help-page {
+        padding-right: 5rem;
+        height: 90vh;
+        font-size: 1.3rem;
+    }
+
+    li {
+        padding-bottom: 1.5rem;
+    }
+}
