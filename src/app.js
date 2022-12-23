@@ -14,6 +14,7 @@ import { setIncomes, setExpenses } from './Reducers/recordsReducer';
 import { setUserDetails } from "./Reducers/authReducer";
 import LoadingPage from './components/LoadingPage';
 
+
 const App = ()=> (
     <Provider store={store}>
         <AppRouter />
@@ -23,7 +24,7 @@ const App = ()=> (
 const root = createRoot(document.getElementById('app')); 
 
 let hasRendered = false; //to reduce the frequency of rendering so that it renders only once per loading from server
-const render = () => {
+const render = () => { //this preserves the login status
     if(!hasRendered) {
         root.render(<App />)
         hasRendered = true
@@ -43,6 +44,7 @@ onAuthStateChanged(auth, (user) => {
                 store.dispatch(setIncomes(incomes))
                 store.dispatch(setUserDetails({uid:user.uid, name:user.displayName}))
                 render();
+                root.render(<App />)
             }
         )
         get(ref(database, `Users/${user.uid}/Expenses`))
@@ -50,9 +52,11 @@ onAuthStateChanged(auth, (user) => {
                 snapshot.forEach((child)=>{expenses.push({...child.val(),id: child.key})})
                 store.dispatch(setExpenses(expenses))
                 render();
+                root.render(<App />)
             }
         )
     } else {
         render();
+        root.render(<App />)
     } 
 })
