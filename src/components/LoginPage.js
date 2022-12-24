@@ -50,7 +50,7 @@ export default () => {
     return (
         <div>
             <img className = "header-logo" id="login-logo" src={fullLogo} alt="logo" />
-            <p id="intro">Welcome to Nakant, where your money never disappears</p>
+            <p id="intro">Welcome to Nordit, where your money never disappears</p>
             <button onClick={login} id="login-button">Login with Google</button>
         </div>   
     )

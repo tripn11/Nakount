@@ -40,7 +40,7 @@ class IncomePage extends React.Component {
   }
 
   render () {
-    let time = moment(this.props.income.time).format("Do MMMM, YYYY");
+    let time = moment(this.props.income.date).format("Do MMMM, YYYY");
 
     return (
       <div>

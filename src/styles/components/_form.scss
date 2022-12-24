@@ -52,6 +52,8 @@ form > textarea {
 @media screen and (max-width: 500px) {
     form {
         height: 70vh;
+        margin: 1rem;
+        width: auto;
     }
 
     form > *{
@@ -67,4 +69,6 @@ form > textarea {
         text-align: center;
         margin: 2rem 0 0 0;
     }
+
+
 }

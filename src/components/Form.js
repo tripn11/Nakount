@@ -35,8 +35,8 @@ export default class Form extends React.Component {
     }
   };
 
-  onDateChange = (date) => {
-    this.setState(() => ({ date: date.valueOf() }));
+  onDateChange = (date) => { 
+    this.setState(() => (date.valueOf() > moment().valueOf() ? ({date:moment().valueOf()}) : ({ date: date.valueOf() }))); //so that the user cannot select dates in the future for inputs 
   };
 
   onFocusChange = ({ focused }) => {
@@ -87,7 +87,7 @@ export default class Form extends React.Component {
             displayFormat='DD/MM/YYYY'
           />
           <textarea
-            placeholder="Add a note for your expense (optional)"
+            placeholder="Add a note for your item (optional)"
             className="textarea"
             value={this.state.note}
             onChange={this.onNoteChange}

@@ -36,7 +36,7 @@ class ExpensePage extends React.Component {
   }
 
   render () {
-    let time = moment(this.props.expense.time).format("Do MMMM, YYYY");
+    let time = moment(this.props.expense.date).format("Do MMMM, YYYY");
 
     return (
       <div>
