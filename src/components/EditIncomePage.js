@@ -5,6 +5,8 @@ import { ref, update } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import Form from "./Form";
 import { editIncome } from "../Reducers/recordsReducer";
+import { setLoading } from "../Reducers/authReducer";
+
 
 export const EditIncomePage = (props) => {
     const navigate = useNavigate();
@@ -19,9 +21,11 @@ export const EditIncomePage = (props) => {
     const selectedIncome = fillForm()
 
     const actions = (income) => {
+        props.dispatchSetLoading(true);
         update(ref(database, `Users/${props.state.auth.uid}/Incomes/${id}`), income)
             .then(()=>{
                 editIncomeDispatch({...income,id})
+                props.dispatchSetLoading(false)
                 navigate("/incomes")
             }
         )
@@ -39,6 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+    dispatchSetLoading:(loading) => dispatch(setLoading(loading)),
     dispatchEditIncome: (income)=>dispatch(editIncome(income))
 })
 

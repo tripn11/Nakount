@@ -5,6 +5,7 @@ import { ref, update } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import Form from "./Form";
 import { editExpense } from "../Reducers/recordsReducer";
+import { setLoading } from "../Reducers/authReducer";
 
 export const EditExpensePage = (props) => {
     const navigate = useNavigate();
@@ -19,9 +20,11 @@ export const EditExpensePage = (props) => {
     const selectedExpense = fillForm()
 
     const actions = (expense) => {
+        props.dispatchSetLoading(true);
         update(ref(database, `Users/${props.state.auth.uid}/Expenses/${id}`), expense)
             .then(()=>{
                 editExpenseDispatch({...expense, id});
+                props.dispatchSetLoading(false)
                 navigate("/expenses");
             })
     }
@@ -38,6 +41,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+    dispatchSetLoading:(loading) => dispatch(setLoading(loading)),
     dispatchEditExpense: (expense)=>dispatch(editExpense(expense))
 })
 

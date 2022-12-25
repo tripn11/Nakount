@@ -5,6 +5,7 @@ import { ref, push } from 'firebase/database';
 import { database } from '../Firebase/firebase';
 import Form from "./Form";
 import { addIncome } from "../Reducers/recordsReducer";
+import { setLoading } from "../Reducers/authReducer";
 
 
 export const AddIncomePage = (props) => {
@@ -13,9 +14,11 @@ export const AddIncomePage = (props) => {
 
 
     const actions = (income) => {
+        props.dispatchSetLoading(true);
         push(ref(database, `Users/${props.userID}/Incomes`), income)
-            .then((result)=>{
+            .then((result)=> {
                 addIncomeDispatch({...income, id:result.key})
+                props.dispatchSetLoading(false)
                 navigate("/incomes");
             }
         )
@@ -33,7 +36,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchAddIncome: (income)=>dispatch(addIncome(income))
+    dispatchAddIncome: (income)=>dispatch(addIncome(income)),
+    dispatchSetLoading:(loading) => dispatch(setLoading(loading))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIncomePage)

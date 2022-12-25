@@ -7,6 +7,8 @@ import numeral from 'numeral';
 import { ref, remove } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import { removeIncome } from "../Reducers/recordsReducer";
+import { setLoading } from "../Reducers/authReducer";
+import LoadingPage from "./LoadingPage";
 
 
 export const convertToSentenceCase = (string) => {
@@ -35,14 +37,20 @@ class IncomePage extends React.Component {
   }
 
   incomeDelete = () => {
+    this.props.dispatchSetLoading(true)
     remove(ref(database, `Users/${this.props.userID}/Incomes/${this.props.income.id}`))
-      .then(()=>{this.props.dispatchRemoveIncome(this.props.income)})
+      .then( ()=>{
+        this.props.dispatchRemoveIncome(this.props.income)
+        this.props.dispatchSetLoading(false)
+      }
+    )
+      
   }
 
   render () {
     let time = moment(this.props.income.date).format("Do MMMM, YYYY");
 
-    return (
+    return (this.props.loadingState ? <LoadingPage /> :
       <div>
         <div className="record-item">
           <p className="record-item-part">{this.props.index + 1} </p> 
@@ -80,11 +88,13 @@ class IncomePage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  userID:state.auth.uid
+  userID:state.auth.uid,
+  loadingState: state.auth.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchRemoveIncome:(income)=>dispatch(removeIncome(income))
+  dispatchRemoveIncome:(income)=>dispatch(removeIncome(income)),
+  dispatchSetLoading:(loading)=>dispatch(setLoading(loading))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(IncomePage);

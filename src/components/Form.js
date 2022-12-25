@@ -1,11 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import { connect } from "react-redux";
 import { SingleDatePicker } from 'react-dates';
+import LoadingPage from './LoadingPage';
 
 
 
 
-export default class Form extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,6 +47,7 @@ export default class Form extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    
     const item = { 
         description: this.state.description.toLowerCase(),
         amount: this.state.amount,
@@ -56,7 +59,7 @@ export default class Form extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.loadingState ? <LoadingPage /> : (
       <div id='form-page'>
         <h2>FORM</h2>
         <form onSubmit={this.onSubmit}>
@@ -101,3 +104,9 @@ export default class Form extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  loadingState: state.auth.loading
+})
+
+export default connect(mapStateToProps)(Form);

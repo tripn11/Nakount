@@ -8,6 +8,8 @@ import { ref, remove } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import { removeExpense } from "../Reducers/recordsReducer";
 import { convertToSentenceCase } from "./IncomePage";
+import { setLoading } from "../Reducers/authReducer";
+import LoadingPage from "./LoadingPage";
 
 
 class ExpensePage extends React.Component {
@@ -31,14 +33,18 @@ class ExpensePage extends React.Component {
   }
 
   expenseDelete = () => {
+    this.props.dispatchSetLoading(true)
     remove(ref(database, `Users/${this.props.userID}/Expenses/${this.props.expense.id}`))
-      .then(()=>{this.props.dispatchRemoveExpense(this.props.expense)}) 
+      .then(()=>{
+        this.props.dispatchRemoveExpense(this.props.expense)
+        this.props.dispatchSetLoading(false)
+      }) 
   }
 
   render () {
     let time = moment(this.props.expense.date).format("Do MMMM, YYYY");
 
-    return (
+    return (this.props.loadingState ? <LoadingPage /> :
       <div>
         <div className="record-item">
           <p className="record-item-part">{this.props.index + 1} </p>  
@@ -77,10 +83,12 @@ class ExpensePage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  loadingState: state.auth.loading,
   userID:state.auth.uid
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  dispatchSetLoading:(loading)=>dispatch(setLoading(loading)),
   dispatchRemoveExpense:(expense)=>dispatch(removeExpense(expense))
 })
 
