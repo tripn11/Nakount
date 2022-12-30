@@ -25,6 +25,10 @@
 .header-nav-item:hover {
     color: gray;
     transition: color 0.5s;
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    -ms-transition: color 0.5s;
+    -o-transition: color 0.5s;
 }
 
 .header-nav-item_active {
@@ -33,9 +37,13 @@
     margin: 0 2rem;
     font-size: 1.4rem;
     font-weight: 100;
-    background-color: darken($color: $dark-purple, $amount: 3);
+    background-color:darken($color:$dark-purple,$amount: 3);
     padding: 0.8rem;
     transition: color 1s, background-color 1s;
+    -webkit-transition: color 1s, background-color 1s;
+    -moz-transition: color 1s, background-color 1s;
+    -ms-transition: color 1s, background-color 1s;
+    -o-transition: color 1s, background-color 1s;
 }
 
 //***********************************************************//

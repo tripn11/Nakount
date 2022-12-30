@@ -25,6 +25,10 @@
     font-weight: 700;
     font-size: 1.5rem;
     background-color: darken($pink, 30);
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
 }
 
 #label-1 {
@@ -102,12 +106,20 @@
 .DateRangePickerInput__clear-dates:hover {
     background-image: linear-gradient($dark-purple,$dark-purple);
     border-radius: 1%;
+    -webkit-border-radius: 1%;
+    -moz-border-radius: 1%;
+    -ms-border-radius: 1%;
+    -o-border-radius: 1%;
 }
 
 .DateRangePickerInput__clear-dates:focus,
 .DateRangePickerInput__clear-dates--hover {
     background: $dark-purple;
     border-radius: 10%;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    -ms-border-radius: 10%;
+    -o-border-radius: 10%;
 }
 
 .DayPicker--horizontal {
@@ -161,7 +173,11 @@
 }
 
 .CalendarDay__button:hover {
-    transition:none
+    transition:none;
+    -webkit-transition:none;
+    -moz-transition:none;
+    -ms-transition:none;
+    -o-transition:none;
 }
 
 //***********************************************************//
@@ -185,7 +201,11 @@
     .label {
         transform: scale(1.5);
         margin-bottom: 2rem;
-    }
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+}
 
     .dashboard-detail {
         margin-bottom: 4rem;

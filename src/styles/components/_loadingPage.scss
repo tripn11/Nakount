@@ -20,5 +20,9 @@
     animation-name: shrinker;
     animation-duration: 1s;
     animation-iteration-count: infinite;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
 }
 
