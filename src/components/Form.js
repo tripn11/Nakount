@@ -61,7 +61,7 @@ class Form extends React.Component {
   render() {
     return this.props.loadingState ? <LoadingPage /> : (
       <div id='form-page'>
-        <h2>FORM</h2>
+        <h2>{this.props.type}</h2>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"

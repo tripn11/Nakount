@@ -27,7 +27,7 @@ export const AddExpensePage = (props) => {
     
     return (
         <div>
-            <Form actions={actions}/>
+            <Form actions={actions} type='Expense' />
         </div>
     )
 }

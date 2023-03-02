@@ -26,7 +26,7 @@ export const AddIncomePage = (props) => {
     
     return (
         <div>
-            <Form actions={actions}/>
+            <Form actions={actions} type='Income' />
         </div>
     )
 }

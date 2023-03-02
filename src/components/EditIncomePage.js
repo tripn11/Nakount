@@ -33,7 +33,7 @@ export const EditIncomePage = (props) => {
     
     return (
         <div>
-            <Form actions={actions} selected={selectedIncome} />
+            <Form actions={actions} selected={selectedIncome} type='Income' />
         </div>
     )
 }
