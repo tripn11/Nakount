@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Modal from 'react-modal';
 import { Link } from "react-router-dom";
 import moment from 'moment';
@@ -7,89 +7,78 @@ import numeral from 'numeral';
 import { ref, remove } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import { removeExpense } from "../Reducers/recordsReducer";
-import { convertToSentenceCase } from "./IncomePage";
 import { setLoading } from "../Reducers/authReducer";
 import LoadingPage from "./LoadingPage";
 
 
-class ExpensePage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      display:false
-    }
-  }
-
-  UNSAFE_componentWillMount() { //unsafe prefix was added to show the componentWillUnmount to show it is unsafe.
-    Modal.setAppElement('body'); //to help on screen readers to know the modal is the active screen. it is required as the warning appears without this line
-  } 
-
-  open = () => {
-    this.setState(()=>({display:true}));
-  }
-
-  close = ()=> {
-    this.setState(()=>({display:false})) 
-  }
-
-  expenseDelete = () => {
-    this.props.dispatchSetLoading(true)
-    remove(ref(database, `Users/${this.props.userID}/Expenses/${this.props.expense.id}`))
-      .then(()=>{
-        this.props.dispatchRemoveExpense(this.props.expense)
-        this.props.dispatchSetLoading(false)
-      }) 
-  }
-
-  render () {
-    let time = moment(this.props.expense.date).format("Do MMMM, YYYY");
-
-    return (this.props.loadingState ? <LoadingPage /> :
-      <div>
-        <div className="record-item">
-          <p className="record-item-part">{this.props.index + 1} </p>  
-          <p className="record-item-part">{convertToSentenceCase(this.props.expense.description)} </p> 
-          <p className="record-item-part">{numeral(this.props.expense.amount).format('$0,0[.]00')}</p>
-          <button onClick={this.open} className="button-clean record-item-part">Expand</button>
-          <button onClick={this.expenseDelete} className="button-clean record-item-part">Delete</button>
-        </div>
-        
-        <Modal
-          className="modal-style"
-          isOpen={this.state.display}
-        >
-        <div>
-          <p>Description:</p>
-          <p>{convertToSentenceCase(this.props.expense.description)}</p>
-        </div>
-        <div>
-          <p>Amount:</p>
-          <p>{numeral(this.props.expense.amount).format('$0,0[.]00')}</p>
-        </div>
-        <div>
-          <p>Date:</p>
-          <p>{time}</p>
-        </div>
-        <div>
-          <p>Note:</p>
-          <p>{this.props.expense.note}</p>  
-        </div>
-          <Link to={`/editExpense/${this.props.expense.id}`}><button className="button-small">Edit</button></Link>
-          <button onClick={this.close} className="button-small">Close</button>
-        </Modal>
-      </div>
-    )
-  }
+export const convertToSentenceCase = (string) => {
+  const newString = string.toLowerCase().replace(/(^\s*\w|[\.\!\?]\s*\w)/g, c => c.toUpperCase()); //the regex takes whitespaces and signs and replaces it with the capital of the first word
+  return newString
 }
 
-const mapStateToProps = (state) => ({
-  loadingState: state.auth.loading,
-  userID:state.auth.uid
-})
+const ExpensePage = (props) => {
+  const [display,setDisplay] = useState(false)
+  const loadingState = useSelector(state=>state.auth.loading)
+  const userID = useSelector(state=>state.auth.uid)
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetLoading:(loading)=>dispatch(setLoading(loading)),
-  dispatchRemoveExpense:(expense)=>dispatch(removeExpense(expense))
-})
+  useEffect (()=>{
+    Modal.setAppElement('body'); //to help on screen readers to know the modal is the active screen. it is required as the warning appears without this line
+  },[])
 
-export default connect (mapStateToProps, mapDispatchToProps)(ExpensePage);
+  const openModal = () => {
+    setDisplay(true);
+  }
+
+  const closeModal = ()=> {
+    setDisplay(false);
+  }
+
+  const expenseDelete = () => {
+    dispatch(setLoading(true))
+    remove(ref(database, `Users/${userID}/Expenses/${props.expense.id}`))
+      .then( ()=>{
+        dispatch(removeExpense(props.expense))
+        dispatch(setLoading(false))
+      }
+    )
+  }
+
+  return (loadingState ? <LoadingPage /> :
+    <div className='detail'>
+      <div onClick={openModal}>
+        <p>{props.index + 1}</p> 
+        <p>{convertToSentenceCase(props.expense.description)}</p> 
+        <p>{numeral(props.expense.amount).format('$0,0[.]00')}</p>
+      </div>
+      <Modal
+        className="modal-style"
+        isOpen={display}
+        >
+        <div>
+          <p>Description:</p> 
+          <p>{convertToSentenceCase(props.expense.description)}</p>
+        </div>
+        <div>
+          <p>Amount:</p> 
+          <p>{numeral(props.expense.amount).format('$0,0[.]00')}</p>
+        </div>
+        <div>
+          <p>Date:</p> 
+          <p>{moment(props.expense.date).format("Do MMMM, YYYY")}</p>
+        </div>
+        <div>
+          <p>Note:</p> 
+          <p>{props.expense.note}</p>
+        </div>
+        <div>
+          <Link to={`/editExpense/${props.expense.id}`} className='edit-detail'><button >Edit</button></Link>
+          <button onClick={expenseDelete}>Delete</button>
+          <button onClick={closeModal}>Close</button>
+        </div>
+      </Modal>
+    </div>
+  )
+}
+
+export default ExpensePage;

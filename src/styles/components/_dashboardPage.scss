@@ -1,234 +1,164 @@
-#dashboard-welcome {
-    color: white;
-    padding:0 0 0 10rem;
-    font-family:'Dancing Script', cursive;
-    font-size: 2rem;
-}
+#dashboard-page {
+    position: relative;
+    min-height: 100vh;
+    >img {
+        width: 5rem;
+    }  
+    
+    >#welcome {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.5rem;
 
-.page-content {
-    padding-left: 5rem;
-}
+        h3{
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
 
-#dashboard-summary {
-    margin-top: 0;
-    padding-top: 0;
-    font-size: 1.3rem;
-    font-family: 'Dancing Script', cursive;
-}
+        p{
+            font-weight: 100;
+        }
+    }
 
-.label {
-    border: solid $pink;
-    border-radius: 50%;
-    border-style:double;
-    border-width: 0.5rem;
-    box-shadow: 0.1rem 0.1rem 0.9rem 0.1rem darken($pink,20);
-    font-weight: 700;
-    font-size: 1.5rem;
-    background-color: darken($pink, 30);
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
-    -ms-border-radius:50%;
-    -o-border-radius:50%;
-}
+    .date {
+        .DateRangePicker__picker {
+            transform: scale(0.7);
+            -webkit-transform: scale(0.7);
+            -moz-transform: scale(0.7);
+            -ms-transform: scale(0.7);
+            -o-transform: scale(0.7);
+        }
+        .DateRangePickerInput { //outer box
+            background-color: transparent;
+            border: 1px solid transparent;
+        }
 
-#label-1 {
-    padding: 3rem 1.4rem;
-}
+        .DateInput { //inner textbox
+            padding:0.1rem;
+            background-color: transparent;
+            width:fit-content;
+            font-size: 0.7rem;
+        }
 
-#label-2 {
-    padding: 3rem 1rem;
-}
+        .DateInput__display-text--has-input { //date itself
+            color: white;
+        }
 
-#label-3 {
-    padding: 3rem 2.9rem;
-}
+        .DateInput__display-text--focused {
+            background-color:grey;
+        }
 
-#dashboard-details_container {
-    display: grid;
-    grid-template-columns: 30rem 30rem;
-    // row-gap: 1rem;
-}
+        .DateInput__input {
+            cursor:pointer;
+        }
 
-#dashboard-detail-3 {
-    grid-column: 1/3;
-}
+        .DateRangePickerInput__arrow {
+            svg {
+                transform: scale(0.6);
+                -webkit-transform: scale(0.6);
+                -moz-transform: scale(0.6);
+                -ms-transform: scale(0.6);
+                -o-transform: scale(0.6);
+                fill:white
+            }
+        }
 
-.dashboard-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.dashboard-detail > p {
-    font-size: 1.5rem;
-    color: white;
-}
+        .DayPicker--horizontal { //background of the month calender container
+            background-color: black;
+        }
 
-#logout {
-    text-align: right;
-    margin:0 2rem 2rem 0;
-}
+        .DayPickerNavigation__prev--default, //border of the front and back arrow of the calender
+        .DayPickerNavigation__next--default {
+            background-image: linear-gradient(black,black);
+            border:none
+        }
 
-#logout button {
-    padding: 0.5rem 3rem;
-    font-size: 1.3rem;
-}
+        .DayPicker__week-header { //mon- sun on the calendar
+            color: white;
+            background-color: black;
+        }
 
-// ////////////for the date range selector/////////////
-#date-range {
-    text-align: right;
-    margin-right: 3rem;
-}
+        .CalendarMonthGrid { //the month div itself
+            background-color: black;
+        }
 
-.DateRangePickerInput {
-    background-color: darken($dark-purple, 5);
-    border: 0.3rem solid darken($dark-purple, 5);
-    box-shadow: 0 0.1rem 0.5rem  black;
-}
+        .CalendarMonth__caption { //the month and year heading 
+            color: white;
+        }
 
-.DateInput {
-    //margin
-    padding:0.1rem;
-    background-color: darken($dark-purple, 5);
-    //font-size
-    font-weight:100;
-    width:8rem;
-}
+        .DayPickerKeyboardShortcuts__show--bottom-right { //the question mark at the bottom right
+            border-right: 33px solid black;
+        }
 
-.DateInput__display-text--has-input {
-    color: white;
-}
+        .CalendarDay--selected-span {//days selected span
+            background: grey;
+            border: 1px double grey;
+            color: white;
+        }
 
-.DateInput__display-text--focused {
-    background-color:purple;
-}
+        .CalendarDay--selected-start, .CalendarDay--selected-end, .CalendarDay--selected {
+            background: grey;
+            border: 1px double grey;
+            color: #fff;
+        }
 
-.DateRangePickerInput__clear-dates:hover {
-    background-image: linear-gradient($dark-purple,$dark-purple);
-    border-radius: 1%;
-    -webkit-border-radius: 1%;
-    -moz-border-radius: 1%;
-    -ms-border-radius: 1%;
-    -o-border-radius: 1%;
-}
+        .DayPickerKeyboardShortcuts__show--bottom-right:hover {
+            border-right: 33px solid grey;
+        }
 
-.DateRangePickerInput__clear-dates:focus,
-.DateRangePickerInput__clear-dates--hover {
-    background: $dark-purple;
-    border-radius: 10%;
-    -webkit-border-radius: 10%;
-    -moz-border-radius: 10%;
-    -ms-border-radius: 10%;
-    -o-border-radius: 10%;
-}
+        .CalendarDay { //each day box
+            border:none;
+        }
 
-.DayPicker--horizontal {
-    color: black;
-    background-color: black;
-    box-shadow: 0 2px 6px black, 0 0 0 1px black;
-}
-
-.DayPickerNavigation__prev--default, //border of the front and back arrow of the calender
-.DayPickerNavigation__next--default {
-    border:1px solid black;
-    background-image: linear-gradient(black,black)
-}
-
-.DayPicker__week-header {
-    color: white;
-    background-color: black;
-}
-
-.CalendarMonthGrid {
-    color: black;
-    background-color: black;
-}
-
-.CalendarMonth__caption {
-    color: white;
-}
-
-.DayPickerKeyboardShortcuts__show--bottom-right {
-    border-right: 33px solid black;
-}
-
-.CalendarDay--selected-span {
-    background: grey;
-    border: 1px double grey;
-    color: white;
-}
-
-.CalendarDay--selected-start, .CalendarDay--selected-end, .CalendarDay--selected {
-    background: grey;
-    border: 1px double grey;
-    color: #fff;
-}
-
-.DayPickerKeyboardShortcuts__show--bottom-right:hover {
-    border-right: 33px solid grey;
-}
-
-.CalendarDay {
-    border:none;
-}
-
-.CalendarDay__button:hover {
-    transition:none;
-    -webkit-transition:none;
-    -moz-transition:none;
-    -ms-transition:none;
-    -o-transition:none;
-}
-
-//***********************************************************//
-//                     Media Queries                         //
-//***********************************************************//
-@media screen and (max-width: 500px) {
-    #dashboard-welcome {
-        padding: 0 0 2rem 5rem;
-    } 
+        .CalendarDay__button:hover {
+            background-image: linear-gradient(grey,grey);
+            transition:none;
+            -webkit-transition:none;
+            -moz-transition:none;
+            -ms-transition:none;
+            -o-transition:none;
+        }
+    }
 
     #dashboard-details_container {
-        display: flex;
-        flex-direction: column;
-        margin-top: 3rem;
-    }
+        margin-top: 10vh;
+        >div {
+            width: 10rem;
+            height: 5rem;
+            border: 1px solid none;
+            border-radius: 0.5rem;
+            -webkit-border-radius: 0.5rem;
+            -moz-border-radius: 0.5rem;
+            -ms-border-radius: 0.5rem;
+            -o-border-radius: 0.5rem;
+            background-image: linear-gradient(to right, rgb(67,67,67),rgb(121,121,121),
+                rgba(255, 255, 255, 0.75)),linear-gradient( red,rgba(0, 0, 255, 0.6));
+            margin: 1rem;
+            padding: 0.5rem 0.8rem;
+            // box-shadow: 0.1rem 0.1rem 0.5rem  grey;
 
-    .page-content {
-        padding-left: 0rem;
-    }
+            >span {
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.9rem;
+            }
 
-    .label {
-        transform: scale(1.5);
-        margin-bottom: 2rem;
-        -webkit-transform: scale(1.5);
-        -moz-transform: scale(1.5);
-        -ms-transform: scale(1.5);
-        -o-transform: scale(1.5);
-}
+            >p {
+                text-align: center;
+                margin-top: 0.7rem;
+                font-size: 0.9rem;
+            }
+        }
 
-    .dashboard-detail {
-        margin-bottom: 4rem;
-    }
+        >div:first-child {
+            width: 15rem;
+            height: 7rem;
 
-
-    #dashboard-summary {
-        font-size: 2rem;
-        margin: 0 1rem 5rem 1rem;
-    }
-
-    #logout {
-        text-align: right;
-    }
-
-    //--------------------for date------------------------------------------//
-    
-    #date-range {
-       margin-bottom: 6rem;
-    }
-
-    
-    .DateInput {
-        font-size:1.2rem;
+            >p {
+                margin-top: 1.5rem;
+                margin-bottom: 0.9rem;
+                font-size: 1rem;
+            }
+        }
     }
 }

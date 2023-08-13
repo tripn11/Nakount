@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { signInWithPopup} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { provider, auth } from '../Firebase/firebase';
 import { set, ref } from 'firebase/database';
 import { database } from '../Firebase/firebase';
-import fullLogo from '../Images/fullLogo.png'
-// import leopard from '../Images/leopard.jpg'; //just showing how to display a picture.whereever the picture is needed just type "<img src={leopard} />.it would display"
+import logo from '../Images/logo.png';
+
+export default () => {
+    const navigate = useNavigate();
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect (()=> {
+        setLoaded(true)
+    },[])
+
+    const login = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                set(ref(database,`Users/${result.user.uid}/Name`), result.user.displayName)
+                navigate('/');
+            }
+        )
+    }
+
+    return (
+        <div id='login-page'>
+            <p className={loaded ? 'slide':''}>Welcome</p>
+            <div>
+                <img className = {loaded ? 'visible' : ''} src={logo} alt="logo" />
+            </div>
+            <p>NORDIT</p>
+            <p>Track your finances with ease</p>
+            <button onClick={login}>Login</button>
+        </div>   
+    )
+}
 
 // const provider = new GoogleAuthProvider();
 // const auth = getAuth();
@@ -34,24 +63,3 @@ import fullLogo from '../Images/fullLogo.png'
 //     //         // ...
 //     // });
 // }
-
-export default () => {
-    const navigate = useNavigate();
-
-    const login = () => {
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                set(ref(database,`Users/${result.user.uid}/Name`), result.user.displayName)
-                navigate('/');
-            }
-        )
-    }
-
-    return (
-        <div>
-            <img className = "header-logo" id="login-logo" src={fullLogo} alt="logo" />
-            <p id="intro">Welcome to Nordit, where your money never disappears</p>
-            <button onClick={login} id="login-button">Login with Google</button>
-        </div>   
-    )
-}

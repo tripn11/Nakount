@@ -1,74 +1,126 @@
-#form-page > h2 {
-    display: block;
-    font-size: 3rem;
-    width: 10rem;
-    margin: 2rem auto 0 auto;
-}
+#form-page {
+    width: 90vw;
+    margin: 1rem auto;
+    min-height: 100vh;
 
-form {
-   display: flex;
-   flex-direction: column;
-   width: 40rem;
-   margin: 2rem auto;
-   background-color: grey;
-   padding: 2rem;
-}
+    h2 {
+        margin-bottom: 2rem;
+    }
 
-form > *{
-    margin-bottom: 2rem;
-}
-
-.SingleDatePicker {
-    text-align: right;
-}
-
-.SingleDatePickerInput {
-    border: none;
-    background-color: grey;
-}
-
-form > textarea {
-    max-width: 36rem;
-    width: 20rem;
-    height: 10rem;
-}
-
-#form-button {
-    text-align: center;
-    margin: 4rem 0 0 0;
-}
-
-.button-average {
-    font-size: 1.2rem;
-    padding:0.8rem 1rem;
-    height: 3rem;
-    width: 8rem;
-    margin: 0.8rem 1rem 0 1rem
-}
-
-//***********************************************************//
-//                     Media Queries                         //
-//***********************************************************//
-@media screen and (max-width: 500px) {
     form {
-        height: 70vh;
-        margin: 1rem;
-        width: auto;
+        >* {
+            width: 100%;
+            margin-bottom: 1rem;
+            outline: none;
+            padding:0.4rem 0.3rem;
+            background-color: rgb(87, 86, 86);
+            border: none;
+            color: whitesmoke;
+            font-size: 0.8rem;
+        }
+
+        ::placeholder {
+            color: rgb(163, 163, 163);
+            font-size: 0.8rem;
+        }
+
+        .date {
+            background-color: black;
+            .SingleDatePicker__picker {
+                transform: scale(0.7);
+                -webkit-transform: scale(0.7);
+                -moz-transform: scale(0.7);
+                -ms-transform: scale(0.7);
+                -o-transform: scale(0.7);
+            }
+            .SingleDatePickerInput { //outer box
+                background-color: transparent;
+                background-color: rgb(87, 86, 86);
+                border: 1px solid transparent;
+            }
+    
+            .DateInput { //inner textbox
+                padding:0.1rem;
+                background-color: transparent;
+                width:fit-content;
+                font-size: 0.7rem;
+            }
+    
+            .DateInput__display-text--has-input { //date itself
+                color: white;
+            }
+    
+            .DateInput__display-text--focused {
+                background-color:grey;
+            }
+    
+            .DateInput__input {
+                cursor:pointer;
+            }    
+    
+            .DayPicker--horizontal { //background of the month calender container
+                background-color: black;
+            }
+    
+            .DayPickerNavigation__prev--default, //border of the front and back arrow of the calender
+            .DayPickerNavigation__next--default {
+                background-image: linear-gradient(black,black);
+                border:none
+            }
+    
+            .DayPicker__week-header { //mon- sun on the calendar
+                color: white;
+                background-color: black;
+            }
+    
+            .CalendarMonthGrid { //the month div itself
+                background-color: black;
+            }
+    
+            .CalendarMonth__caption { //the month and year heading 
+                color: white;
+            }
+    
+            .DayPickerKeyboardShortcuts__show--bottom-right { //the question mark at the bottom right
+                border-right: 33px solid black;
+            }
+    
+            .CalendarDay--selected-span {//days selected span
+                background: grey;
+                border: 1px double grey;
+                color: white;
+            }
+    
+            .CalendarDay--selected-start, .CalendarDay--selected-end, .CalendarDay--selected {
+                background: grey;
+                border: 1px double grey;
+                color: #fff;
+            }
+    
+            .DayPickerKeyboardShortcuts__show--bottom-right:hover {
+                border-right: 33px solid grey;
+            }
+    
+            .CalendarDay { //each day box
+                border:none;
+            }
+    
+            .CalendarDay__button:hover {
+                background-image: linear-gradient(grey,grey);
+                transition:none;
+                -webkit-transition:none;
+                -moz-transition:none;
+                -ms-transition:none;
+                -o-transition:none;
+            }
+        }
+        
+        textarea {
+            height:7rem;
+        }
+
+        #form-button {
+            background-color: transparent;
+        }
     }
-
-    form > *{
-        margin-bottom: 5rem;
-    }
-
-    form > input {
-        height: 5rem;
-        font-size: 1.5rem;
-    }
-
-    #form-button {
-        text-align: center;
-        margin: 2rem 0 0 0;
-    }
-
-
 }

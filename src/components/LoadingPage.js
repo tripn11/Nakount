@@ -1,8 +1,8 @@
 import React from 'react';
-import fullLogo from '../Images/fullLogo.png';
+import logo from '../Images/logo.png';
 
 export default () => (
     <div id='loading-page'>
-       <img id='loading-logo' src={fullLogo} />   
+       <img src={logo} />   
     </div>
 )

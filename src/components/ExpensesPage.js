@@ -1,56 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ExpensePage from "./ExpensePage";
 import { newToOld, oldToNew, ascending, descending, setWord } from '../Reducers/filtersReducer';
 import sorter from "../sorter/sorter";
 
-const ExpensesPage = (props) => { 
+const ExpensesPage = () => { 
+    const myState = useSelector(state=>state)
+    const dispatch = useDispatch();
+
     const sortChange = (e) => {
         switch(e.target.value){
             case "ascending" :
-                props.dispatchAscending();
-                break;                     //so that it won't keep running to the next case.
+                dispatch(ascending());
+                break;                  
             case "descending" :
-                props.dispatchDescending();
+                dispatch(descending());
                 break;
             case "oldToNew" :
-                props.dispatchOldToNew();
+                dispatch(oldToNew());
                 break;
             case "newToOld" :
-                props.dispatchNewToOld();
+                dispatch(newToOld());
                 break;
             default: 
-                return     //nothing should happen when neither of the above occurs
+                return     
         }
     }
 
 
     const searchChange = (e) => {
-        props.dispatchSetWord(e.target.value.toLowerCase());
+        dispatch(setWord(e.target.value.toLowerCase()));
     }
 
-    const fakeExpenses = [...props.state.records.expenses]; //i had to create a fake or copy of the states because sort tries to mutate the state which is not allowed and throws an error
-    const visibleExpenses = sorter(fakeExpenses, props.state.filters)
+    const fakeExpenses = [...myState.records.expenses]; 
+    const visibleExpenses = sorter(fakeExpenses, myState.filters)
 
 
     return (
-    <div>
-        <h2 className="records-title">Expenses</h2>
-        <div className="records-header">
+    <div className="details-page">
+        <h2>Expenses</h2>
+        <Link to="/addExpense" className="add-detail"><button>Add Expense</button></Link>
+        <div>
             <input 
                 placeholder="Search Expenses"
-                value={props.state.filters.searchedWord}
-                onChange = { searchChange } 
-                className="records-search"
+                value={myState.filters.searchedWord}
+                onChange={searchChange}
             />
-            <Link to="/addExpense"><button className="button-block">Add Expense</button></Link>
-            <div className="records-sort">
+            <div>
                 <label htmlFor="sortExpensesBy">Sort Expenses by:</label>
                 <select 
-                    className="sortIncomesBy" 
                     name="sortExpensesBy"
-                    value={props.state.filters.sortBy}
+                    value={myState.filters.sortBy}
                     onChange={sortChange}>
                     <option value='oldToNew'>Date(Oldest to Newest)</option>
                     <option value='newToOld'>Date(Newest to Oldest)</option>
@@ -59,29 +60,16 @@ const ExpensesPage = (props) => {
                 </select>
             </div>
         </div>
-        <div className="page-content">
-            <p className="records-subheading">List of Expenses</p>
-            <div className="records-list">
-                {visibleExpenses.length > 0 ?
-                    visibleExpenses.map( (expense, index) =>(
-                        <ExpensePage key={expense.id} expense = {expense} index = {index} />
-                    )): <p>No expense yet</p> 
-                }
-            </div>
+        
+        <h3>List of Expenses</h3>
+        <div className="records-list">
+            {visibleExpenses.length > 0 ?
+                visibleExpenses.map( (expense, index) =>(
+                    <ExpensePage key={expense.id} expense={expense} index = {index} />
+                )): <p>No expense yet</p> 
+            }
         </div>
     </div>
 )}
 
-const mapStateToProps = (state) => ({
-    state
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    dispatchNewToOld: ()=>dispatch(newToOld()),
-    dispatchOldToNew: ()=>dispatch(oldToNew()),
-    dispatchAscending: ()=>dispatch(ascending()),
-    dispatchDescending: ()=>dispatch(descending()),
-    dispatchSetWord: (word)=>dispatch(setWord(word))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ExpensesPage)
+export default ExpensesPage;

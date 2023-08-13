@@ -1,24 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import IncomePage from "./IncomePage";
 import { newToOld, oldToNew, ascending, descending, setWord } from '../Reducers/filtersReducer';
 import sorter from "../sorter/sorter";
 
-const IncomesPage = (props) => { 
+const IncomesPage = () => { 
+    const myState = useSelector(state=>state)
+    const dispatch = useDispatch();
+
     const sortChange = (e) => {
         switch(e.target.value){
             case "ascending" :
-                props.dispatchAscending();
+                dispatch(ascending());
                 break;                     //so that it won't keep running to the next case.
             case "descending" :
-                props.dispatchDescending();
+                dispatch(descending());
                 break;
             case "oldToNew" :
-                props.dispatchOldToNew();
+                dispatch(oldToNew());
                 break;
             case "newToOld" :
-                props.dispatchNewToOld();
+                dispatch(newToOld());
                 break;
             default: 
                 return     //nothing should happen when neither of the above occurs
@@ -27,30 +30,28 @@ const IncomesPage = (props) => {
 
 
     const searchChange = (e) => {
-        props.dispatchSetWord(e.target.value.toLowerCase());
+        dispatch(setWord(e.target.value.toLowerCase()));
     }
 
-    const fakeIncomes = [...props.state.records.incomes]; //i had to create a fake or copy of the states because sort tries to mutate the state which is not allowed and throws an error
-    const visibleIncomes = sorter(fakeIncomes, props.state.filters)
+    const fakeIncomes = [...myState.records.incomes]; //i had to create a fake or copy of the states because sort tries to mutate the state which is not allowed and throws an error
+    const visibleIncomes = sorter(fakeIncomes, myState.filters)
 
 
     return (
-    <div>
-        <h2 className="records-title">Incomes</h2>
-        <div className="records-header">
+    <div className="details-page">
+        <h2>Incomes</h2>
+        <Link to="/addIncome" className="add-detail"><button>Add Income</button></Link>
+        <div>
             <input 
                 placeholder="Search Incomes"
-                value={props.state.filters.searchedWord}
+                value={myState.filters.searchedWord}
                 onChange={searchChange}
-                className="records-search"
             />
-            <Link to="/addIncome"><button className="button-block">Add Income</button></Link>
-            <div className="records-sort">
+            <div>
                 <label htmlFor="sortIncomesBy">Sort Incomes by:</label>
                 <select 
-                    className="sortIncomesBy" 
                     name="sortIncomesBy"
-                    value={props.state.filters.sortBy}
+                    value={myState.filters.sortBy}
                     onChange={sortChange}>
                     <option value='oldToNew'>Date(Oldest to Newest)</option>
                     <option value='newToOld'>Date(Newest to Oldest)</option>
@@ -59,31 +60,18 @@ const IncomesPage = (props) => {
                 </select>
             </div>
         </div>
-        <div className="page-content">
-            <p className="records-subheading">List of Incomes</p>
-            <div className="records-list">
-                {visibleIncomes.length > 0 ?
-                    visibleIncomes.map( (income, index) =>(
-                        <IncomePage key={income.id} income={income} index = {index} />
-                    )): <p>No income yet</p> 
-                }
-            </div>
+        
+        <h3>List of Incomes</h3>
+        <div className="records-list">
+            {visibleIncomes.length > 0 ?
+                visibleIncomes.map( (income, index) =>(
+                    <IncomePage key={income.id} income={income} index = {index} />
+                )): <p>No income yet</p> 
+            }
         </div>
     </div>
 )}
 
-const mapStateToProps = (state) => ({
-    state
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    dispatchNewToOld: ()=>dispatch(newToOld()),
-    dispatchOldToNew: ()=>dispatch(oldToNew()),
-    dispatchAscending: ()=>dispatch(ascending()),
-    dispatchDescending: ()=>dispatch(descending()),
-    dispatchSetWord: (word)=>dispatch(setWord(word))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(IncomesPage)
+export default IncomesPage;
 
 // "/addIncome means from the root of the folder or server while "addIncome" would just append it to current url"

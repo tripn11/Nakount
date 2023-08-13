@@ -1,115 +1,98 @@
-.records-title {
-    font-size: 2rem;
-    margin: 2rem;
-}
-
-.records-header {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: space-between;
-    align-content: space-around;
-    margin: 3rem 1rem 3rem 0;
-}
-
-.records-search {
-    margin-left: 2rem;
-    height: 2rem;
-}
-
-.button-block {
-    border-radius: 0;
-    font-size: 1.2rem;
-    padding:0.6rem 2rem;
-    margin-bottom: 0.5rem;
-    -webkit-border-radius:0;
-    -moz-border-radius:0;
-    -ms-border-radius:0;
-    -o-border-radius:0;
-}
-
-.records-subheading {
-    font-weight: 700;
-    font-size: 1.5rem;
-}
-
-.records-sort label {
-    margin-right: 1rem;
-}
-
-.button-clean {
-    color:$light-grey;
-    background-image: linear-gradient(to right, $darker-purple, $dark-purple);
-    font-size: 1rem;
-    padding: 0 0.5rem;
-    margin:0.4rem 2rem;
-}
-
-.button-clean:hover {
-    background-image: linear-gradient($purple, $dark-purple);
-}
-
-
-.record-item {
-    display:grid;
-    grid-template-columns: 5rem 20rem 20rem 10rem 10rem;
-    margin:0 15rem 0 10rem;
-    padding: 1rem 0;
-    border-bottom: 0.01rem solid gray;
-}
-
-.record-item > p {
-    margin-right: 1rem;
-    overflow: hidden;
-}
-
-.records-list>div:first-child>div{
-    border-top: 1px solid gray;
-}
-
-.sortIncomesBy {
-    color: white;
-    background-color: $darker-purple;
-    border-color:$darker-purple;
-    padding: 0.5rem 0.5rem;
-}
-
-.sortIncomesBy:focus{
-    border: none;
-}
-
-//***********************************************************//
-//                     Media Queries                         //
-//***********************************************************//
-@media screen and (max-width: 500px) {
-    .records-header {
-        grid-template-columns: auto auto;
+.details-page {
+    width: 90vw;
+    height: auto;
+    margin:0 auto;
+    h2 {
         text-align: center;
-        row-gap: 2rem;
+        // font-family: 'Poppins', sans-serif;
+        padding: 0.5rem 0;
     }
 
-    .records-sort {
-        grid-column:2/3;
-        margin-right: 0.5rem;
+    .add-detail {
+        text-decoration: none;
+
+        button {
+            color: white;
+            margin: 2rem auto;
+        }
     }
 
-    .records-search {
-        height: 2.5rem;
+    >div:first-of-type {
+        display: flex;
+        flex-direction: row-reverse;
+        margin:1rem auto;
+        justify-content: space-between;
+        align-items: end;
+        font-size: 0.7rem;
+
+        input {
+            width: 35%;
+            padding: 0.1rem 0.5rem ;
+            outline: none;
+            height: 50%;
+            border-radius: 0.4rem;
+            -webkit-border-radius: 0.4rem;
+            -moz-border-radius: 0.4rem;
+            -ms-border-radius: 0.4rem;
+            -o-border-radius: 0.4rem;
+            border: 1px solid transparent;
+        }
+
+        >div {
+            width: 40%;
+
+            select {
+                width: 100%;
+                border-radius: 0.4rem;
+                -webkit-border-radius: 0.4rem;
+                -moz-border-radius: 0.4rem;
+                -ms-border-radius: 0.4rem;
+                -o-border-radius: 0.4rem;
+                border: 1px solid transparent;
+                outline: none;
+                cursor: pointer;
+            }
+        }
     }
 
-    .records-subheading {
-        text-align: center;
-        font-size: 2rem;
+    >h3 {
+        font-size: 1rem;
+        margin: 1rem auto;
     }
 
     .records-list {
-        width: 35rem;
-        margin: 0 auto;
-        padding:0
-    }
+        >.detail {
+            >div:first-child {
+                display: grid;
+                grid-template-columns: 8% 60% 23%;
+                padding: 1rem 0.5rem;
+                column-gap: 5%;
+                align-items: center;
+                font-size: 0.8rem;
+                cursor: pointer;
 
-    .record-item {
-        grid-template-columns: 2rem 10rem 10rem 5rem 5rem;
-        margin:0;
-    }
+                p:first-child {
+                    background-color: rgb(83, 83, 83);
+                    border: 1px solid transparent;
+                    text-align: center;
+                    padding: 0.2rem;
+                    border-radius:0.3rem;
+                    -webkit-border-radius:0.3rem;
+                    -moz-border-radius:0.3rem;
+                    -ms-border-radius:0.3rem;
+                    -o-border-radius:0.3rem;
+                }
 
+                p:nth-child(2) {
+                    font-family: 'Poppins', sans-serif;
+                    overflow-x: hidden;
+                }
+
+                p:last-child {
+                    text-align: right;
+                    color: rgb(201, 200, 200);
+                }
+            }
+        }
+    }
 }

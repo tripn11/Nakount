@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Modal from 'react-modal';
 import { Link } from "react-router-dom";
 import moment from 'moment';
@@ -16,85 +16,69 @@ export const convertToSentenceCase = (string) => {
   return newString
 }
 
-class IncomePage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      display:false
-    }
-  }
+const IncomePage = (props) => {
+  const [display,setDisplay] = useState(false)
+  const loadingState = useSelector(state=>state.auth.loading)
+  const userID = useSelector(state=>state.auth.uid)
+  const dispatch = useDispatch();
 
-  UNSAFE_componentWillMount() { //unsafe prefix was added to show the componentWillUnmount to show it is unsafe.
+  useEffect (()=>{
     Modal.setAppElement('body'); //to help on screen readers to know the modal is the active screen. it is required as the warning appears without this line
-  } 
+  },[])
 
-  open = () => {
-    this.setState(()=>({display:true}));
+  const openModal = () => {
+    setDisplay(true);
   }
 
-  close = ()=> {
-    this.setState(()=>({display:false})) 
+  const closeModal = ()=> {
+    setDisplay(false);
   }
 
-  incomeDelete = () => {
-    this.props.dispatchSetLoading(true)
-    remove(ref(database, `Users/${this.props.userID}/Incomes/${this.props.income.id}`))
+  const incomeDelete = () => {
+    dispatch(setLoading(true))
+    remove(ref(database, `Users/${userID}/Incomes/${props.income.id}`))
       .then( ()=>{
-        this.props.dispatchRemoveIncome(this.props.income)
-        this.props.dispatchSetLoading(false)
+        dispatch(removeIncome(props.income))
+        dispatch(setLoading(false))
       }
     )
-      
   }
 
-  render () {
-    let time = moment(this.props.income.date).format("Do MMMM, YYYY");
-
-    return (this.props.loadingState ? <LoadingPage /> :
-      <div>
-        <div className="record-item">
-          <p className="record-item-part">{this.props.index + 1} </p> 
-          <p className="record-item-part">{convertToSentenceCase(this.props.income.description)}</p> 
-          <p className="record-item-part">{numeral(this.props.income.amount).format('$0,0[.]00')}</p>
-          <button onClick={this.open} className="button-clean record-item-part">Expand</button>
-          <button onClick={this.incomeDelete} className="button-clean record-item-part">Delete</button>
-        </div>
-        <Modal
-          className="modal-style"
-          isOpen={this.state.display}
-        >
-          <div>
-            <p>Description:</p> 
-            <p>{convertToSentenceCase(this.props.income.description)}</p>
-          </div>
-          <div>
-            <p>Amount:</p> 
-            <p>{numeral(this.props.income.amount).format('$0,0[.]00')}</p>
-          </div>
-          <div>
-            <p>Date:</p> 
-            <p>{time}</p>
-          </div>
-          <div>
-            <p>Note:</p> 
-            <p>{this.props.income.note}</p>
-          </div>
-          <Link to={`/editIncome/${this.props.income.id}`}><button className="button-small">Edit</button></Link>
-          <button onClick={this.close} className="button-small">Close</button>
-        </Modal>
+  return (loadingState ? <LoadingPage /> :
+    <div className='detail'>
+      <div onClick={openModal}>
+        <p>{props.index + 1}</p> 
+        <p>{convertToSentenceCase(props.income.description)}</p> 
+        <p>{numeral(props.income.amount).format('$0,0[.]00')}</p>
       </div>
-    )
-  }
+      <Modal
+        className="modal-style"
+        isOpen={display}
+        >
+        <div>
+          <p>Description:</p> 
+          <p>{convertToSentenceCase(props.income.description)}</p>
+        </div>
+        <div>
+          <p>Amount:</p> 
+          <p>{numeral(props.income.amount).format('$0,0[.]00')}</p>
+        </div>
+        <div>
+          <p>Date:</p> 
+          <p>{moment(props.income.date).format("Do MMMM, YYYY")}</p>
+        </div>
+        <div>
+          <p>Note:</p> 
+          <p>{props.income.note}</p>
+        </div>
+        <div>
+          <Link to={`/editIncome/${props.income.id}`} className='edit-detail'><button >Edit</button></Link>
+          <button onClick={incomeDelete}>Delete</button>
+          <button onClick={closeModal}>Close</button>
+        </div>
+      </Modal>
+    </div>
+  )
 }
 
-const mapStateToProps = (state) => ({
-  userID:state.auth.uid,
-  loadingState: state.auth.loading
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  dispatchRemoveIncome:(income)=>dispatch(removeIncome(income)),
-  dispatchSetLoading:(loading)=>dispatch(setLoading(loading))
-})
-
-export default connect (mapStateToProps, mapDispatchToProps)(IncomePage);
+export default IncomePage;

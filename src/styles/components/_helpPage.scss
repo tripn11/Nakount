@@ -1,36 +1,42 @@
-#feedback {
-    height: 8rem;
-    width:30rem;
-}
-
-li {
-    padding-bottom: 1rem;
-}
-
 #help-page {
-    padding-left: 5rem;
-}
+    width: 80vw;
+    margin: 1rem auto;
+    font-size: 0.8rem; 
+    color: whitesmoke;
 
-#help-solicit {
-    font-weight: 700;
-}
 
-#feedback-container {
-    display: flex;
-    align-items: flex-end;
-}
+    ul {
+        list-style-type:circle;
 
-//***********************************************************//
-//                     Media Queries                         //
-//***********************************************************//
-@media screen and (max-width: 500px) {
-    #help-page {
-        padding-right: 5rem;
-        height: 90vh;
-        font-size: 1.3rem;
+        li {
+            padding-bottom: 1rem;
+        }
     }
 
-    li {
-        padding-bottom: 1.5rem;
+    >p{
+        padding-bottom: 1rem;
+        font-style: italic;
     }
+
+    #response {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+        textarea {
+            height: 5rem;
+            width: 10rem;
+        }
+
+        button {
+            width: 4rem;
+            padding: 0.2rem 0.5rem;
+            height: fit-content;
+        }
+    }
+
+    >div:last-child {
+        margin-bottom: 5rem;
+    }
+
+
 }

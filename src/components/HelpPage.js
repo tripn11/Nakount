@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { push, ref } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import { setStateMessage } from "../Reducers/authReducer";
+import Logout from "./Logout";
 
 const HelpPage = (props) => {
     const [message, setMessage] = useState("");
@@ -24,29 +25,51 @@ const HelpPage = (props) => {
 
     return(
         <div id="help-page">
-            <p>Guide to use the app</p>
-            <ol>
-                <li>The Dashboard tab or the home page contains the summary of Incomes and Expenses and the net Income</li>
-                <li>By default, the time span in consideration is from the first to the current date of the month</li>
-                <li>You can set a custom time range using the date picker available on the Dashboard page</li>
-                <li>The Income and Expenses Pages are identical.</li>
-                <li>The Add Income or Add Expense button is used to add an income or expense</li>
-                <li>You can use the options provided to sort the data according to amount or date made</li>
-                <li>Using the search bar, the description could be searched to find a particular item</li>
-                <li>clicking the expand button, shows more details of the item such as date and additional note made</li>
-                <li>The Delete button obviously deletes the selected item</li>
-            </ol>
-            <p id="help-solicit">Your reviews are appreciated. You can also financially support the developers. Just request for details</p>
-            <div id="feedback-container">
+            <h1>User Guide: Financial Summary and Management</h1>
+            <ul>
+                <li>The Home page functions as your financial hub, delivering a succinct presentation of both 
+                    Incomes and Expenses, culminating in the precise net Income figure.</li>
+                <li>By default, the application employs a time frame extending from the first day to the current date 
+                    of the month. This strategic approach facilitates rapid assessment of your monthly financial status.
+                    </li>
+                <li>Use the integrated date picker on the Home page to customize your time range and analyze financial 
+                    trends over specific periods.</li>
+                <li>Seamlessly document your financial endeavors using the dedicated "Add Income" or "Add Expense" 
+                    buttons. These intuitive features streamline the process of inputting your financial data.</li>
+                <li>Garner clarity from your data through the employment of the available sorting options. 
+                    Organize transactions based on their monetary value or the dates of their occurrence, 
+                    enhancing your data analysis endeavors.</li>
+                <li>A highly efficient search bar empowers you to promptly locate specific items by scrutinizing their 
+                    descriptions. This capability simplifies the task of identifying individual transactions within 
+                    your meticulously managed records.</li>
+                <li>Expand your transactional understanding by clicking on each transaction. Access supplementary 
+                    details, including the transaction date and any appended notes, contributing to a holistic 
+                    transactional perspective.</li>
+                <li>When circumstances demand, leverage the Delete button to meticulously eliminate selected items 
+                    from your records. This straightforward process ensures the utmost accuracy in your data 
+                    management efforts.</li>
+            </ul>
+            <p>We appreciate your selection of our financial management web application. Armed with these advanced 
+                features, you possess the tools needed to uphold a lucid and organized perspective on your financial 
+                undertakings. Should queries arise or assistance be required, our dedicated support team is on standby 
+                to address any further inquiries you may have.</p>
+            <p>Your reviews are appreciated. You can also financially support the developers. 
+                Just request for details below
+            </p>
+
+            <div id="response">
                 <textarea 
                     value={message}
                     onChange={messageChange}
                     id="feedback"
                 />
-                <div>
-                    <button onClick={onSubmit} className='button-average'>Submit</button>
-                </div>
+                
+                <button onClick={onSubmit}>Submit</button>
             </div>
+            
+
+            
+            <Logout />
         </div>
     )
 }

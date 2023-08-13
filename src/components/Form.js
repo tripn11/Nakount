@@ -80,15 +80,18 @@ class Form extends React.Component {
             required
           />
 
-          <SingleDatePicker
-            date={moment(this.state.date)}
-            onDateChange={this.onDateChange}
-            focused={this.state.focused}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-            displayFormat='DD/MM/YYYY'
-          />
+          <div className='date'>
+            <SingleDatePicker
+              date={moment(this.state.date)}
+              onDateChange={this.onDateChange}
+              focused={this.state.focused}
+              onFocusChange={this.onFocusChange}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+              displayFormat='DD/MM/YYYY'
+            />
+          </div>
+
           <textarea
             placeholder="Add a note for your item (optional)"
             className="textarea"
