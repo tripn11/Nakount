@@ -8,7 +8,6 @@ import { ref, remove } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import { removeExpense } from "../Reducers/recordsReducer";
 import { setLoading } from "../Reducers/authReducer";
-import LoadingPage from "./LoadingPage";
 
 
 export const convertToSentenceCase = (string) => {
@@ -18,7 +17,6 @@ export const convertToSentenceCase = (string) => {
 
 const ExpensePage = (props) => {
   const [display,setDisplay] = useState(false)
-  const loadingState = useSelector(state=>state.auth.loading)
   const userID = useSelector(state=>state.auth.uid)
   const dispatch = useDispatch();
 
@@ -44,7 +42,7 @@ const ExpensePage = (props) => {
     )
   }
 
-  return (loadingState ? <LoadingPage /> :
+  return (
     <div className='detail'>
       <div onClick={openModal}>
         <p>{props.index + 1}</p> 

@@ -4,9 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import ExpensePage from "./ExpensePage";
 import { newToOld, oldToNew, ascending, descending, setWord } from '../Reducers/filtersReducer';
 import sorter from "../sorter/sorter";
+import logo from '../Images/logo.png';
+import LoadingPage from "./LoadingPage";
+
+
 
 const ExpensesPage = () => { 
     const myState = useSelector(state=>state)
+    const loadingState = useSelector(state=>state.auth.loading)
     const dispatch = useDispatch();
 
     const sortChange = (e) => {
@@ -39,6 +44,7 @@ const ExpensesPage = () => {
 
     return (
     <div className="details-page">
+        <img src={logo} alt="logo"/>
         <h2>Expenses</h2>
         <Link to="/addExpense" className="add-detail"><button>Add Expense</button></Link>
         <div>
@@ -62,13 +68,13 @@ const ExpensesPage = () => {
         </div>
         
         <h3>List of Expenses</h3>
-        <div className="records-list">
+        {loadingState ? <LoadingPage /> :<div className="records-list">
             {visibleExpenses.length > 0 ?
                 visibleExpenses.map( (expense, index) =>(
                     <ExpensePage key={expense.id} expense={expense} index = {index} />
                 )): <p>No expense yet</p> 
             }
-        </div>
+        </div>}
     </div>
 )}
 

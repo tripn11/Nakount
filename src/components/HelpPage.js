@@ -5,6 +5,8 @@ import { push, ref } from "firebase/database";
 import { database } from "../Firebase/firebase";
 import { setStateMessage } from "../Reducers/authReducer";
 import Logout from "./Logout";
+import logo from '../Images/logo.png';
+
 
 const HelpPage = (props) => {
     const [message, setMessage] = useState("");
@@ -25,6 +27,7 @@ const HelpPage = (props) => {
 
     return(
         <div id="help-page">
+            <img src={logo} alt="logo"/>
             <h1>User Guide: Financial Summary and Management</h1>
             <ul>
                 <li>The Home page functions as your financial hub, delivering a succinct presentation of both 

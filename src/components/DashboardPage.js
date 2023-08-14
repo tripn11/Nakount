@@ -18,7 +18,7 @@ const DashboardPage = () => {
         focused: null
     })
 
-    const datesChanged = ({ startDate, endDate }) => { //putting the conditionals in the setRange function,
+    const datesChanged = ({ startDate, endDate }) => { //putting the conditionals in the setRange function won't work,
         //wierd behavior from moment
         if (startDate === null || endDate === null) {
             setRange({
@@ -57,8 +57,6 @@ const DashboardPage = () => {
                 <h3>{auth.name}</h3>
                 <p>Welcome back</p>
             </div>
-
-            
 
             <div id="dashboard-details_container">
                 <div>

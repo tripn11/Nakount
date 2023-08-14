@@ -4,9 +4,6 @@ import { connect } from "react-redux";
 import { SingleDatePicker } from 'react-dates';
 import LoadingPage from './LoadingPage';
 
-
-
-
 class Form extends React.Component {
   constructor(props) {
     super(props);

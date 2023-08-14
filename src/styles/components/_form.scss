@@ -1,5 +1,6 @@
 #form-page {
     width: 90vw;
+    max-width: 30rem;
     margin: 1rem auto;
     min-height: 100vh;
 
@@ -10,7 +11,7 @@
     form {
         >* {
             width: 100%;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             outline: none;
             padding:0.4rem 0.3rem;
             background-color: rgb(87, 86, 86);

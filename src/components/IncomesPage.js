@@ -4,9 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import IncomePage from "./IncomePage";
 import { newToOld, oldToNew, ascending, descending, setWord } from '../Reducers/filtersReducer';
 import sorter from "../sorter/sorter";
+import logo from '../Images/logo.png';
+import LoadingPage from "./LoadingPage";
+
 
 const IncomesPage = () => { 
     const myState = useSelector(state=>state)
+    const loadingState = useSelector(state=>state.auth.loading)
+
     const dispatch = useDispatch();
 
     const sortChange = (e) => {
@@ -39,6 +44,7 @@ const IncomesPage = () => {
 
     return (
     <div className="details-page">
+        <img src={logo} alt="logo"/>
         <h2>Incomes</h2>
         <Link to="/addIncome" className="add-detail"><button>Add Income</button></Link>
         <div>
@@ -62,13 +68,13 @@ const IncomesPage = () => {
         </div>
         
         <h3>List of Incomes</h3>
-        <div className="records-list">
+        {loadingState ? <LoadingPage /> :<div className="records-list">
             {visibleIncomes.length > 0 ?
                 visibleIncomes.map( (income, index) =>(
                     <IncomePage key={income.id} income={income} index = {index} />
                 )): <p>No income yet</p> 
             }
-        </div>
+        </div>}
     </div>
 )}
 
