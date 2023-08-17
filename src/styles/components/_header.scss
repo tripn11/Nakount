@@ -4,7 +4,8 @@
     width: 100vw;
     display: flex;
     padding: 0.5rem 0;
-    background-color: black;
+    background-color: rgba(36, 35, 35, 0.95);
+    background-color: rgba(0, 0, 0, 0.5);
 
     >.nav {
         display: flex;
@@ -12,7 +13,7 @@
         flex: 1;
         flex-basis: 0;
         align-items: center;
-        color: rgb(207, 207, 207);
+        color: gray;
         transition:0.5s;
         -webkit-transition:0.5s;
         -moz-transition:0.5s;

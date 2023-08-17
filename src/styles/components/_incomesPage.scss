@@ -92,7 +92,7 @@
 
                 p:nth-child(2) {
                     font-family: 'Poppins', sans-serif;
-                    overflow-x: hidden;
+                    overflow: hidden;
                 }
 
                 p:last-child {
@@ -100,6 +100,10 @@
                     color: rgb(201, 200, 200);
                 }
             }
+        }
+
+        >.detail:last-child {
+            padding-bottom: 3rem;
         }
     }
 }
