@@ -18,21 +18,25 @@ body {
 
 button {
     padding: 0.6rem 3rem;
-    background: linear-gradient(to right, #555, #999, #555); /* Complex gradient with different gray shades */
-    color: black;
+    background: linear-gradient(to right, #555, #999, #555);
+    /*Complexgradientwithdifferentgrayshades*/color: black;
     border: none;
-    border-radius: 5px;
+    border-radius: 100px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
     margin: 0 auto;
     display: block;
     font-family: 'Poppins', sans-serif;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
 }
 
 button:hover {
-    background: linear-gradient(to right, #444, #888, #444); /* Slightly lighter gradient on hover */
-    color: white;
+    background: linear-gradient(to right, #444, #888, #444); /* Slightly darker gradient on hover */
+    color: black;
 }
 
 img {

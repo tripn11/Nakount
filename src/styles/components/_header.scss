@@ -12,7 +12,7 @@
         flex: 1;
         flex-basis: 0;
         align-items: center;
-        color: gray;
+        color: rgb(207, 207, 207);
         transition:0.5s;
         -webkit-transition:0.5s;
         -moz-transition:0.5s;
@@ -21,12 +21,12 @@
         text-decoration: none;
 
         ion-icon {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         span {
             font-size: 0.6rem;
-            font-weight: 100;
+            font-weight: 500;
         }
     }
 
@@ -40,9 +40,11 @@
 
     .header-nav-item_active {
         color: white;
+        
 
         span {
-            font-weight: 300;
+            font-weight: 700;
+            font-size: 0.7rem;
         }
     }
 }
@@ -54,13 +56,14 @@
         bottom: auto;
         right: 8%;
         width: 60%;
+        background-color: transparent;
 
         >.nav {
             color: white;
 
-            ion-icon {
-                display: none;
-            }
+            // ion-icon {
+            //     display: none;
+            // }
 
             span {
                 font-weight: 300;

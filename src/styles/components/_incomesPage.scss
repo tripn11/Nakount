@@ -31,7 +31,7 @@
 
         input {
             width: 35%;
-            padding: 0.1rem 0.5rem ;
+            padding: 0.25rem 0.5rem ;
             outline: none;
             height: 50%;
             border-radius: 0.4rem;
@@ -55,6 +55,9 @@
                 border: 1px solid transparent;
                 outline: none;
                 cursor: pointer;
+                padding-top: 0.15rem;
+                padding-bottom: 0.15rem;
+                margin: 0.2rem auto;
             }
         }
     }

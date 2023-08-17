@@ -1,6 +1,7 @@
 #dashboard-page {
     position: relative;
     min-height: 100vh;
+    background-image: url('../Images/background2.avif');
     >img {
         width: 5rem;
     }  
@@ -133,7 +134,7 @@
             -ms-border-radius: 0.5rem;
             -o-border-radius: 0.5rem;
             background-image: linear-gradient(to right, rgb(67,67,67),rgb(121,121,121),
-                rgba(255, 255, 255, 0.75)),linear-gradient( red,rgba(0, 0, 255, 0.6));
+                rgba(255, 255, 255, 0.75));
             margin: 2rem 1rem;
             padding: 0.5rem 0.8rem;
 

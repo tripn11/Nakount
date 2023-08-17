@@ -34,13 +34,18 @@
 
         button {
             width: 4rem;
-            padding: 0.2rem 0.5rem;
+            padding: 0.3rem 0.6rem;
             height: fit-content;
+            color:whitesmoke
         }
     }
 
     >div:last-child {
         margin-bottom: 5rem;
+        
+        button {
+            color:white;
+        }
     }
 }
 
