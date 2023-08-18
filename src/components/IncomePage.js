@@ -51,6 +51,7 @@ const IncomePage = (props) => {
       </div>
       <Modal
         className="modal-style"
+        overlayClassName='overlay-style'
         isOpen={display}
         >
         <div>
